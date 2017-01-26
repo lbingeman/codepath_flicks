@@ -11,22 +11,32 @@
 #import "NetworkManager.h"
 #import "MovieModel.h"
 #import "MovieViewController.h"
+#import "MovieCollectionViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+
 
 typedef NS_ENUM(NSInteger, MovieListType) {
     MovieListTypeNowPlaying,
     MovieListTypeTopRated,
 };
 
-@interface ViewController () <UITableViewDataSource,UITableViewDelegate>
+typedef NS_ENUM(NSInteger, MovieDisplayType) {
+    MovieDisplayTypeList,
+    MovieDisplayTypeGrid,
+};
+
+@interface ViewController () <UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
     @property (strong,nonatomic) NetworkManager* networkManager;
     @property (strong,nonatomic) UIRefreshControl* refreshControl;
     @property (weak, nonatomic) IBOutlet UITableView *movieTableView;
+    @property (weak, nonatomic) IBOutlet UICollectionView *movieCollectionView;
     @property (strong, nonatomic) NSArray<MovieModel*>* movies;
     @property (weak, nonatomic) IBOutlet UIView *networkError;
     @property (weak, nonatomic) IBOutlet UISegmentedControl *movieSegmentControl;
     @property (nonatomic, assign) MovieListType type;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *movieCollectionFlow;
+    @property (nonatomic, assign) MovieDisplayType displayType;
 @end
 
 @implementation ViewController
@@ -36,6 +46,9 @@ typedef NS_ENUM(NSInteger, MovieListType) {
     // Do any additional setup after loading the view, typically from a nib.
     self.movieTableView.dataSource = self;
     self.movieTableView.delegate = self;
+    
+    self.movieCollectionView.dataSource = self;
+    self.movieCollectionView.delegate = self;
     
     self.movies = [NSArray new];
 
@@ -49,9 +62,11 @@ typedef NS_ENUM(NSInteger, MovieListType) {
                                                @"topRated": @(MovieListTypeTopRated),
                                                };
     });
+    
     self.type = restorationIdentifierToTypeMapping[self.restorationIdentifier].integerValue;
+    self.displayType = self.movieSegmentControl.selectedSegmentIndex;
     
-    
+    [self showAndHideDisplayTypes];
     [self fetchMovies];
     
     [self.movieSegmentControl addTarget:self action:@selector(viewTypeChanged:) forControlEvents:UIControlEventValueChanged];
@@ -60,12 +75,66 @@ typedef NS_ENUM(NSInteger, MovieListType) {
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.movieTableView insertSubview:self.refreshControl atIndex:0];
     
-    
-}
-- (IBAction)viewTypeChanged:(UISegmentedControl *)sender {
-    
 }
 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MovieCollectionViewCell* movieCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"movieCollectionCell" forIndexPath:indexPath];
+ 
+    MovieModel* movie = [self.movies objectAtIndex:indexPath.row];
+    [movieCell.moviePoster setImageWithURL:[movie posterURL]];
+    
+    return movieCell;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.movies.count;
+}
+
+- (void)showAndHideDisplayTypes {
+    switch (self.displayType) {
+        case MovieDisplayTypeList:
+            self.displayType = MovieDisplayTypeList;
+            
+            [self.movieTableView setHidden:NO];
+            [self.movieCollectionView setHidden:YES];
+            
+            [self.movieTableView reloadData];
+            
+            break;
+        case MovieDisplayTypeGrid:
+            self.displayType = MovieDisplayTypeGrid;
+            
+            [self.movieCollectionView setHidden:NO];
+            [self.movieTableView setHidden:YES];
+            
+            [self.movieCollectionView reloadData];
+            
+            break;
+    }
+}
+
+- (IBAction)viewTypeChanged:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+        case MovieDisplayTypeList:
+            self.displayType = MovieDisplayTypeList;
+            break;
+        case MovieDisplayTypeGrid:
+            self.displayType = MovieDisplayTypeGrid;
+            break;
+    }
+    [self showAndHideDisplayTypes];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger totalWidth = collectionView.bounds.size.width;
+    NSInteger cellsPerRow = 3;
+    CGFloat dimensions = (totalWidth) / cellsPerRow;
+    return CGSizeMake(dimensions, dimensions*1.5);
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -108,47 +177,19 @@ typedef NS_ENUM(NSInteger, MovieListType) {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-//-(void)fetchNowPlaying {
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [self.networkManager fetchNowPlayingMovies:^(NSError* error, NSArray* movies){
-//        if (!error) {
-//            self.movies = movies;
-//            dispatch_async(dispatch_get_main_queue(),^{
-//                [self.movieTableView reloadData];
-//                [self.refreshControl endRefreshing];
-//                [MBProgressHUD hideHUDForView:self.view animated:YES];
-//            });
-//        } else {
-//            NSLog(@"An error occurred: %@", error.description);
-//            [self.networkError setHidden:NO];
-//        }
-//    }];
-//}
-//
-//-(void)fetchTopMovies {
-//    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeAnnularDeterminate;
-//    hud.label.text = @"Loading";
-//    [self.networkManager fetchTopMovies:^(NSError* error, NSArray* movies){
-//        if (!error) {
-//            self.movies = movies;
-//            dispatch_async(dispatch_get_main_queue(),^{
-//                [self.movieTableView reloadData];
-//                [self.refreshControl endRefreshing];
-//                [MBProgressHUD hideHUDForView:self.view animated:YES];
-//            });
-//        } else {
-//            NSLog(@"An error occurred: %@", error.description);
-//        }
-//    }];
-//}
-
 -(void)fetchMovies {
     void(^completionHandler)(NSError*, NSArray*) = ^(NSError* error, NSArray* movies){
         if (!error) {
             self.movies = movies;
             dispatch_async(dispatch_get_main_queue(),^{
-                [self.movieTableView reloadData];
+                switch (self.displayType) {
+                    case MovieDisplayTypeList:
+                        [self.movieTableView reloadData];
+                        break;
+                    case MovieDisplayTypeGrid:
+                        [self.movieCollectionView reloadData];
+                        break;
+                }
                 [self.refreshControl endRefreshing];
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
             });

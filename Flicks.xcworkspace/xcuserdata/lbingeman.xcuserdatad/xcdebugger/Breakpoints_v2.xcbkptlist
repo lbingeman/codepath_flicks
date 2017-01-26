@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flicks/ViewController.m"
-            timestampString = "507072614.248503"
+            timestampString = "507084169.135801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "@implementation ViewController"
-            landmarkType = "3">
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-collectionView:layout:sizeForItemAtIndexPath:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
