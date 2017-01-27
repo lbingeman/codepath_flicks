@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, MovieDisplayType) {
 }
 
 
-// collection view data source
+#pragma mark collection view data source
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieModel* movie;
     if(searchBarActive == YES){
@@ -180,6 +180,7 @@ typedef NS_ENUM(NSInteger, MovieDisplayType) {
 // collection view delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
