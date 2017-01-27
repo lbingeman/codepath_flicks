@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DB79C8D28493CFF256DC80BE /* libPods-Flicks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1C4018E96211896BFB2F9A /* libPods-Flicks.a */; };
+		EB5A16D41E3A73B700A5E5E3 /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5A16D31E3A73B700A5E5E3 /* stars.png */; };
+		EB5A16D61E3A763D00A5E5E3 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5A16D51E3A763D00A5E5E3 /* time.png */; };
+		EB634DB51E3ACC7D00810004 /* playTrailer.png in Resources */ = {isa = PBXBuildFile; fileRef = EB634DB41E3ACC7D00810004 /* playTrailer.png */; };
+		EB634DF11E3AE19D00810004 /* UIImageView+CustomImageFade.m in Sources */ = {isa = PBXBuildFile; fileRef = EB634DF01E3AE19D00810004 /* UIImageView+CustomImageFade.m */; };
 		EBD9464A1E36CBD900FB964D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD946411E36CBD900FB964D /* AppDelegate.m */; };
 		EBD9464B1E36CBD900FB964D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBD946421E36CBD900FB964D /* Info.plist */; };
 		EBD9464C1E36CBD900FB964D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD946431E36CBD900FB964D /* main.m */; };
@@ -29,6 +33,11 @@
 		9425481E2C1778FA7BE43326 /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		A48DD934E9B4185CC21BAFBB /* Pods-Flicks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.release.xcconfig"; sourceTree = "<group>"; };
 		CD1C4018E96211896BFB2F9A /* libPods-Flicks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flicks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB5A16D31E3A73B700A5E5E3 /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars.png; path = Flicks/icons/stars.png; sourceTree = "<group>"; };
+		EB5A16D51E3A763D00A5E5E3 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = time.png; path = Flicks/icons/time.png; sourceTree = "<group>"; };
+		EB634DB41E3ACC7D00810004 /* playTrailer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playTrailer.png; path = Flicks/icons/playTrailer.png; sourceTree = "<group>"; };
+		EB634DEF1E3AE19D00810004 /* UIImageView+CustomImageFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+CustomImageFade.h"; path = "Flicks/UIImageView+CustomImageFade.h"; sourceTree = "<group>"; };
+		EB634DF01E3AE19D00810004 /* UIImageView+CustomImageFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+CustomImageFade.m"; path = "Flicks/UIImageView+CustomImageFade.m"; sourceTree = "<group>"; };
 		EB8DDFF81E3683EC009A1EC3 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD946401E36CBD900FB964D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Flicks/AppDelegate.h; sourceTree = "<group>"; };
 		EBD946411E36CBD900FB964D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Flicks/AppDelegate.m; sourceTree = "<group>"; };
@@ -83,6 +92,46 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB634DB01E3AB9E400810004 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EBD946481E36CBD900FB964D /* ViewController.h */,
+				EBD946491E36CBD900FB964D /* ViewController.m */,
+				EBD946641E37CFF400FB964D /* MovieViewController.h */,
+				EBD946651E37CFF400FB964D /* MovieViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		EB634DB11E3AB9FC00810004 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				EBD946551E36CC0200FB964D /* LaunchScreen.storyboard */,
+				EBD946571E36CC0200FB964D /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		EB634DB21E3ABA3700810004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EBD946521E36CBEE00FB964D /* MovieModel.h */,
+				EBD946531E36CBEE00FB964D /* MovieModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		EB634DB31E3ABA4100810004 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EBD9468A1E3956E100FB964D /* MovieCollectionViewCell.h */,
+				EBD9468B1E3956E100FB964D /* MovieCollectionViewCell.m */,
+				EBD946441E36CBD900FB964D /* MovieCell.h */,
+				EBD946451E36CBD900FB964D /* MovieCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		EB8DDFEF1E3683EC009A1EC3 = {
 			isa = PBXGroup;
 			children = (
@@ -104,26 +153,20 @@
 		EBD9463F1E36CBBE00FB964D /* Flicks */ = {
 			isa = PBXGroup;
 			children = (
-				EBD946551E36CC0200FB964D /* LaunchScreen.storyboard */,
-				EBD946571E36CC0200FB964D /* Main.storyboard */,
-				EBD9468A1E3956E100FB964D /* MovieCollectionViewCell.h */,
-				EBD9468B1E3956E100FB964D /* MovieCollectionViewCell.m */,
-				EBD946521E36CBEE00FB964D /* MovieModel.h */,
-				EBD946531E36CBEE00FB964D /* MovieModel.m */,
+				EB634DEF1E3AE19D00810004 /* UIImageView+CustomImageFade.h */,
+				EB634DF01E3AE19D00810004 /* UIImageView+CustomImageFade.m */,
 				EBD946501E36CBE500FB964D /* Assets.xcassets */,
 				EBD946401E36CBD900FB964D /* AppDelegate.h */,
 				EBD946411E36CBD900FB964D /* AppDelegate.m */,
-				EBD946421E36CBD900FB964D /* Info.plist */,
+				EB634DB31E3ABA4100810004 /* Cells */,
+				EBD9468D1E397F5E00FB964D /* ICONS */,
 				EBD946431E36CBD900FB964D /* main.m */,
-				EBD946441E36CBD900FB964D /* MovieCell.h */,
-				EBD946451E36CBD900FB964D /* MovieCell.m */,
+				EB634DB21E3ABA3700810004 /* Models */,
 				EBD946461E36CBD900FB964D /* NetworkManager.h */,
 				EBD946471E36CBD900FB964D /* NetworkManager.m */,
-				EBD946481E36CBD900FB964D /* ViewController.h */,
-				EBD946491E36CBD900FB964D /* ViewController.m */,
-				EBD9468D1E397F5E00FB964D /* ICONS */,
-				EBD946641E37CFF400FB964D /* MovieViewController.h */,
-				EBD946651E37CFF400FB964D /* MovieViewController.m */,
+				EB634DB11E3AB9FC00810004 /* Storyboards */,
+				EB634DB01E3AB9E400810004 /* View Controllers */,
+				EBD946421E36CBD900FB964D /* Info.plist */,
 			);
 			name = Flicks;
 			sourceTree = "<group>";
@@ -131,8 +174,11 @@
 		EBD9468D1E397F5E00FB964D /* ICONS */ = {
 			isa = PBXGroup;
 			children = (
+				EB634DB41E3ACC7D00810004 /* playTrailer.png */,
 				EBD946961E39807A00FB964D /* grid.png */,
 				EBD9469C1E39829000FB964D /* nowPlaying.png */,
+				EB5A16D51E3A763D00A5E5E3 /* time.png */,
+				EB5A16D31E3A73B700A5E5E3 /* stars.png */,
 				EBD9468E1E397F6C00FB964D /* list.png */,
 			);
 			name = ICONS;
@@ -201,8 +247,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBD946591E36CC0200FB964D /* LaunchScreen.storyboard in Resources */,
+				EB5A16D41E3A73B700A5E5E3 /* stars.png in Resources */,
+				EB5A16D61E3A763D00A5E5E3 /* time.png in Resources */,
 				EBD9469D1E39829000FB964D /* nowPlaying.png in Resources */,
 				EBD946901E397F6C00FB964D /* list.png in Resources */,
+				EB634DB51E3ACC7D00810004 /* playTrailer.png in Resources */,
 				EBD946511E36CBE500FB964D /* Assets.xcassets in Resources */,
 				EBD9464B1E36CBD900FB964D /* Info.plist in Resources */,
 				EBD9465A1E36CC0200FB964D /* Main.storyboard in Resources */,
@@ -273,6 +322,7 @@
 				EBD9464D1E36CBD900FB964D /* MovieCell.m in Sources */,
 				EBD946541E36CBEE00FB964D /* MovieModel.m in Sources */,
 				EBD9464F1E36CBD900FB964D /* ViewController.m in Sources */,
+				EB634DF11E3AE19D00810004 /* UIImageView+CustomImageFade.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = J6Y4SU8P23;
 				INFOPLIST_FILE = Flicks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Yahoo.Flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -408,6 +459,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = J6Y4SU8P23;
 				INFOPLIST_FILE = Flicks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Yahoo.Flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";

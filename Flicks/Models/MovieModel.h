@@ -16,7 +16,14 @@
 @property (nonatomic,strong)NSString* movieID;
 @property (nonatomic,strong)NSDate* releaseDate;
 @property (nonatomic,strong)NSNumber* voteAverage;
+@property (nonatomic)int runtime;
+@property (nonatomic,strong) NSURL* highQualityPoster;
+@property (nonatomic,strong) NSURL* lowQualityPoster;
 
 - (instancetype)initWithDictionary:(NSDictionary*) jsonDictionary;
 - (NSString*)getReleaseDate;
+- (NSString*)getRunTime;
+- (void)setDetailedDataWithJSON:(NSDictionary*)responseDictionary;
+- (NSString*)getTrailerID;
+- (BOOL)hasTrailer;
 @end

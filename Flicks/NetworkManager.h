@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MovieModel.h"
 
 @interface NetworkManager : NSObject
 - (void)fetchNowPlayingMovies: (void(^)(NSError *,NSArray*))completionHandler;
 - (void)fetchTopMovies: (void(^)(NSError *,NSArray*))completionHandler;
+- (void)fetchMovieDetailsWithID:(NSString*)movieID completionHandler:(void(^)(NSError *,NSDictionary*))completionHandler;
 @end

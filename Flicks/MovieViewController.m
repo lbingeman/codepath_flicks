@@ -8,8 +8,14 @@
 
 #import "MovieViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
+#import "UIImageView+CustomImageFade.h"
+
 #define buffer 20.0f;
 @interface MovieViewController ()
+    @property (weak, nonatomic) IBOutlet UILabel *runTime;
+    @property (weak, nonatomic) IBOutlet UILabel *starAmount;
+    @property (weak, nonatomic) IBOutlet UIView *trailerPlay;
 
 @end
 
@@ -17,19 +23,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self reloadScreen];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadScreen {
     [self setContent];
     
-
     //Resize movie overview
-    NSLog(@"View:%f",_movieView.frame.size.height);
     [_movieOverview sizeToFit];
-
+    
     //set scroll view
     [self setScrollView];
-    
-    
-    
 }
+
 - (void)setScrollView {
     
     float contentHeight = self.movieView.frame.size.height;
@@ -40,27 +52,35 @@
     self.movieScrollView.scrollIndicatorInsets= UIEdgeInsetsMake(offsetSize, 0, 0, 0);
 
 }
+- (IBAction)playTapped:(UITapGestureRecognizer *)sender {
+    [self playVideoWithVideoID:[self.movie getTrailerID]];
+}
 
 - (void)setContent{
     self.movieOverview.text = self.movie.movieDescription;
     self.movieTitle.text = self.movie.title;
-    [self.posterImage setImageWithURL:[_movie posterURL]];
+    [self.posterImage setImageWithLowQualityURL:self.movie.lowQualityPoster highQualityURL:self.movie.highQualityPoster];
     self.releaseDateLabel.text = [self.movie getReleaseDate];
+    self.runTime.text = [self.movie getRunTime];
+    self.starAmount.text = [NSString stringWithFormat:@"%.1f",self.movie.voteAverage.floatValue];
+    self.trailerPlay.hidden = ![self.movie hasTrailer];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//Trailer Playing
+- (void) playVideoWithVideoID:(NSString*)videoID {
+    XCDYouTubeVideoPlayerViewController* videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:videoID];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
+    [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
+    MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+    if (finishReason == MPMovieFinishReasonPlaybackError)
+    {
+        NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
+        // Handle error
+    }
 }
-*/
 
 @end

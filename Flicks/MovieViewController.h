@@ -16,6 +16,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *movieOverview;
 @property (weak, nonatomic) IBOutlet UIView *movieView;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
-
-
+- (void)reloadScreen;
 @end

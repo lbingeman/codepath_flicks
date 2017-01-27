@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MovieCell : UITableViewCell
+@interface MovieCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *movieTitle;
 @property (weak, nonatomic) IBOutlet UILabel *overview;
 @property (weak, nonatomic) IBOutlet UIImageView *posterImage;
