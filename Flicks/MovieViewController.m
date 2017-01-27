@@ -7,7 +7,6 @@
 //
 
 #import "MovieViewController.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import "UIImageView+CustomImageFade.h"
 

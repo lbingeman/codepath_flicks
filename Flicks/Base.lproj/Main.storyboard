@@ -18,6 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="1nv-12-hjo" kind="relationship" relationship="viewControllers" id="faJ-Jp-9zd"/>
@@ -50,7 +52,6 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                     </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u21-se-A3H">
                                 <rect key="frame" x="0.0" y="107" width="375" height="511"/>
@@ -141,11 +142,12 @@
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Vk8-5J-8ug">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <segments>
                                     <segment title="" image="list.png"/>
                                     <segment title="" image="grid.png"/>
                                 </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="viewTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8Kk-uu-NbS"/>
                                 </connections>
@@ -338,7 +340,6 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                     </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qRg-X8-jcp">
                                 <rect key="frame" x="0.0" y="107" width="375" height="511"/>
@@ -426,15 +427,16 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Top Rated" id="KZp-dF-ols">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="y64-cg-Bd9">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="y64-cg-Bd9">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="DM7-3F-Rjr">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <segments>
                                     <segment title="" image="list.png"/>
                                     <segment title="" image="grid.png"/>
                                 </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="viewTypeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="VHy-hd-ugW"/>
                                 </connections>
@@ -459,9 +461,10 @@
                 <navigationController title="Now Playing" automaticallyAdjustsScrollViewInsets="NO" id="1nv-12-hjo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Now Playing" image="nowPlaying.png" id="Z1k-ys-O5M"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AAB-sa-gtX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="AAB-sa-gtX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -478,9 +481,11 @@
                 <navigationController title="Top Rated" automaticallyAdjustsScrollViewInsets="NO" id="Xud-0y-F2L" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="dJ9-81-S9F"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LQI-xw-4YT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="LQI-xw-4YT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -490,23 +495,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qId-dH-Eja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="784.79999999999995" y="979.16041979010504"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="34F-qZ-JYn">
-            <objects>
-                <viewController id="i5K-Oe-MdZ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sLx-64-Wp4"/>
-                        <viewControllerLayoutGuide type="bottom" id="CNw-rK-LVu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4U9-X7-d2c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dJ8-3P-XNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
         <!--View Controller-->
         <scene sceneID="4T3-QQ-JzK">
@@ -524,6 +512,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nm0-1X-4Tk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1308" y="125"/>
         </scene>
     </scenes>
     <resources>

@@ -12,7 +12,6 @@
 #import "MovieModel.h"
 #import "MovieViewController.h"
 #import "MovieCollectionViewCell.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "UIImageView+CustomImageFade.h"
 
@@ -159,7 +158,7 @@ typedef NS_ENUM(NSInteger, MovieDisplayType) {
     }
     if(self.displayType == MovieDisplayTypeGrid){
         MovieCollectionViewCell* movieCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"movieGridCell" forIndexPath:indexPath];
-        [movieCell.moviePoster setImageWithURL:[movie posterURL]];
+        [movieCell.moviePoster setImageFadeLoadWithURL:[movie posterURL]];
         return movieCell;
     } else{
         MovieCell* movieCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"movieListCell" forIndexPath:indexPath];
@@ -205,11 +204,17 @@ typedef NS_ENUM(NSInteger, MovieDisplayType) {
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MovieViewController* newViewController = segue.destinationViewController;
     NSIndexPath* indexPath = [self.movieCollectionView indexPathForCell:sender];
+    MovieModel* currentMovie;
+    if(searchBarActive == YES){
+        currentMovie = [self.filteredMovies objectAtIndex:indexPath.row];
+    } else{
+        currentMovie = [self.movies objectAtIndex:indexPath.row];
+    }
     
-    MovieModel* currentMovie = [self.movies objectAtIndex:indexPath.row];
     MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:newViewController.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
     hud.label.text = @"Loading";
+    
     [self.networkManager fetchMovieDetailsWithID:[currentMovie movieID] completionHandler:^(NSError* error, NSDictionary* dictionary){
         if(!error){
             [currentMovie setDetailedDataWithJSON:dictionary];
